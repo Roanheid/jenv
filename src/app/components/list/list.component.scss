@@ -6,5 +6,16 @@ form {
   mat-list {
     border: 1px solid #cccccc;
     margin-bottom: 10px;
+
+    mat-list-item {
+      line-height: 48px;
+
+      ::ng-deep .list-item-text {
+        .highlighted-text {
+          background-color: #005cbb;
+          color: white;
+        }
+      }
+    }
   }
 }

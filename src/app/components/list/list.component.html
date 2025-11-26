@@ -1,12 +1,17 @@
 <form [formGroup]="listForm" (ngSubmit)="onSubmit()">
   <mat-form-field class="find-field">
-    <mat-label>Find item</mat-label>
+    <mat-label>Hightlight item</mat-label>
     <input id="find" matInput type="text" formControlName="find" />
   </mat-form-field>
 
-  <mat-list>
+  <mat-list class="list">
     @for (item of items(); track item) {
-    <mat-list-item>{{ item.value }}</mat-list-item>
+    <mat-list-item
+      ><span
+        class="list-item-text"
+        [innerHTML]="item.value | highlightText : highlightedText()"
+      ></span
+    ></mat-list-item>
     }
   </mat-list>
 

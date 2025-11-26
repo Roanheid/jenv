@@ -8,6 +8,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { HighlightTextPipe } from '../../pipes/highlight-text.pipe';
 import { ListItem } from '../../services/data.interace';
 import { DataService } from '../../services/data.service';
 
@@ -19,6 +20,7 @@ import { DataService } from '../../services/data.service';
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
+    HighlightTextPipe,
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
@@ -27,6 +29,7 @@ export class ListComponent {
   private readonly dataService = inject(DataService);
 
   items = signal<ListItem[]>([]);
+  highlightedText = signal<string>('');
 
   listForm = new FormGroup({
     find: new FormControl(''),
@@ -37,6 +40,10 @@ export class ListComponent {
     this.dataService.getListItems().subscribe((items: ListItem[]) => {
       this.items.set(items);
     });
+
+    this.listForm.get('find')?.valueChanges.subscribe((change) => {
+      this.highlightedText.set(change ?? '');
+    });
   }
 
   onSubmit(): void {
@@ -44,9 +51,13 @@ export class ListComponent {
       return;
     }
 
+    // get value
     const value = this.listForm.get('input')?.value ?? '';
+
+    // update name to kebab -case
     const name = value.replace(/\s+/g, '-').toLowerCase();
 
+    // add new listitem to items array
     this.items.update((values: ListItem[]) => {
       return [
         ...values,

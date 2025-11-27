@@ -1,6 +1,12 @@
 <main class="main">
   <h1>{{ title }}</h1>
-  <p>Congratulations! Your app is running. 🎉</p>
+  <p>
+    Congratulations! Your app is running. 🎉 @if(isLoggedIn()) { (<a
+      href="#"
+      (click)="logout()"
+      >logout</a
+    >) }
+  </p>
 
   <router-outlet />
 </main>

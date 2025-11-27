@@ -7,7 +7,7 @@ import {
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import * as items from '../../mocks/list.mock.json';
+import * as items from '../../../mocks/list.mock.json';
 import { ListItem } from './data.interace';
 import { DataService } from './data.service';
 

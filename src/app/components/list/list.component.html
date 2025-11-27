@@ -6,22 +6,23 @@
 
   <mat-nav-list id="list" class="list">
     @for (item of items(); track item) {
-    <mat-list-item>
+    <mat-list-item [routerLink]="'/detail/' + item.name">
       <a
         class="list-item-text"
-        [routerLink]="'/list/' + item.name"
         [innerHTML]="item.value | highlightText : highlightedText()"
       ></a>
     </mat-list-item>
     }
   </mat-nav-list>
 
-  <mat-form-field class="input-field">
-    <mat-label>New item</mat-label>
-    <input id="input" matInput type="text" formControlName="input" />
-    @if (listForm.get('input')?.hasError('required')) {
-    <mat-error>'New item' is <strong>requierd</strong></mat-error>
-    }
-  </mat-form-field>
-  <button id="input-add" mat-flat-button color="primary">Add item</button>
+  <div class="input-container">
+    <mat-form-field class="input-field">
+      <mat-label>New item</mat-label>
+      <input id="input" matInput type="text" formControlName="input" />
+      @if (listForm.get('input')?.hasError('required')) {
+      <mat-error>'New item' is <strong>requierd</strong></mat-error>
+      }
+    </mat-form-field>
+    <button id="input-btn" mat-flat-button color="primary">Add item</button>
+  </div>
 </form>

@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ActivatedRoute } from '@angular/router';
-import { DataService } from '../../services/data.service';
-import { DataServiceMock } from '../../services/data.service.mock';
+import { DataService } from '../../services/data/data.service';
+import { DataServiceMock } from '../../services/data/data.service.mock';
 import { ListComponent } from './list.component';
 
 describe('ListComponent', () => {
@@ -34,7 +34,7 @@ describe('ListComponent', () => {
     // GIVEN
     expect(component.items().length).toEqual(2);
     const input = fixture.nativeElement.querySelector('#input');
-    const button = fixture.nativeElement.querySelector('#input-add');
+    const button = fixture.nativeElement.querySelector('#input-btn');
 
     // WHEN
     input.value = 'Item 3';
@@ -49,7 +49,7 @@ describe('ListComponent', () => {
   it('should not add a new item to the list if input field is empty', () => {
     // GIVEN
     expect(component.items().length).toEqual(2);
-    const button = fixture.nativeElement.querySelector('#input-add');
+    const button = fixture.nativeElement.querySelector('#input-btn');
 
     // WHEN
     button.click();

@@ -10,8 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { HighlightTextPipe } from '../../pipes/highlight-text.pipe';
-import { ListItem } from '../../services/data.interace';
-import { DataService } from '../../services/data.service';
+import { ListItem } from '../../services/data/data.interace';
+import { DataService } from '../../services/data/data.service';
 
 @Component({
   selector: 'app-list',

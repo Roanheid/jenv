@@ -3,14 +3,18 @@ form {
     margin-right: 10px;
   }
 
-  mat-list {
-    border: 1px solid #cccccc;
+  .list {
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
     margin-bottom: 10px;
 
     mat-list-item {
       line-height: 48px;
 
       ::ng-deep .list-item-text {
+        color: black;
+        text-decoration: none;
+
         .highlighted-text {
           background-color: #005cbb;
           color: white;

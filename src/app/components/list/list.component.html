@@ -4,16 +4,17 @@
     <input id="find" matInput type="text" formControlName="find" />
   </mat-form-field>
 
-  <mat-list class="list">
+  <mat-nav-list id="list" class="list">
     @for (item of items(); track item) {
-    <mat-list-item
-      ><span
+    <mat-list-item>
+      <a
         class="list-item-text"
+        [routerLink]="'/list/' + item.name"
         [innerHTML]="item.value | highlightText : highlightedText()"
-      ></span
-    ></mat-list-item>
+      ></a>
+    </mat-list-item>
     }
-  </mat-list>
+  </mat-nav-list>
 
   <mat-form-field class="input-field">
     <mat-label>New item</mat-label>
@@ -22,5 +23,5 @@
     <mat-error>'New item' is <strong>requierd</strong></mat-error>
     }
   </mat-form-field>
-  <button mat-flat-button color="primary">Add item</button>
+  <button id="input-add" mat-flat-button color="primary">Add item</button>
 </form>

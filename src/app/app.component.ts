@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { FakeAuthService } from './services/fake-auth/fake-auth.service';
 
 @Component({
@@ -12,9 +12,11 @@ import { FakeAuthService } from './services/fake-auth/fake-auth.service';
 export class AppComponent {
   title = 'jenv';
   private authService = inject(FakeAuthService);
+  private router = inject(Router);
 
   logout(): void {
     this.authService.logout();
+    this.router.navigate(['/']);
   }
 
   isLoggedIn(): boolean {

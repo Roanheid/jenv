@@ -5,7 +5,7 @@ import { ListComponent } from './components/list/list.component';
 import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: ListComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'list', component: ListComponent, canActivate: [AuthGuard] },
   {

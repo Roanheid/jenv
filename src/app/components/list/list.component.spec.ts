@@ -60,7 +60,7 @@ describe('ListComponent', () => {
 
   it('should highlight text', () => {
     // GIVEN
-    const find = fixture.nativeElement.querySelector('#find');
+    (component as any).dataService.highlightedText.set('');
 
     const listitem =
       fixture.nativeElement.querySelectorAll('.list-item-text')[0];
@@ -69,8 +69,7 @@ describe('ListComponent', () => {
     fixture.detectChanges();
 
     // WHEN
-    find.value = 'te';
-    find.dispatchEvent(new Event('input'));
+    (component as any).dataService.highlightedText.set('te');
     fixture.detectChanges();
 
     // THEN
@@ -79,6 +78,5 @@ describe('ListComponent', () => {
       '<span class="highlighted-text">te</span>'
     );
     expect(component.highlightedText()).toEqual('te');
-    expect(true).toBeTruthy();
   });
 });

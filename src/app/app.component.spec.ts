@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ListComponent } from './components/list/list.component';
 import { DataService } from './services/data/data.service';
@@ -22,6 +23,10 @@ describe('AppComponent', () => {
           provide: FakeAuthService,
           useClass: FakeAuthServiceMock,
         },
+        {
+          provide: Router,
+          useValue: { navigate: jest.fn() },
+        },
       ],
     }).compileComponents();
 
@@ -40,12 +45,14 @@ describe('AppComponent', () => {
 
   it('should logout', () => {
     // GIVEN
-    const spy = jest.spyOn((component as any).authService, 'logout');
+    const authSpy = jest.spyOn((component as any).authService, 'logout');
+    const routerSpy = jest.spyOn((component as any).router, 'navigate');
 
     // WHEN
     component.logout();
 
     // THEN
-    expect(spy).toHaveBeenCalled();
+    expect(authSpy).toHaveBeenCalled();
+    expect(routerSpy).toHaveBeenCalledWith(['/']);
   });
 });

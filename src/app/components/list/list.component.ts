@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { HighlightTextPipe } from '../../pipes/highlight-text.pipe';
 import { ListItem } from '../../services/data/data.interace';
 import { DataService } from '../../services/data/data.service';
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-list',
@@ -23,6 +24,7 @@ import { DataService } from '../../services/data/data.service';
     MatButtonModule,
     HighlightTextPipe,
     RouterModule,
+    SearchComponent,
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
@@ -30,22 +32,15 @@ import { DataService } from '../../services/data/data.service';
 export class ListComponent {
   private readonly dataService = inject(DataService);
 
-  items = signal<ListItem[]>([]);
-  highlightedText = signal<string>('');
+  items = computed<ListItem[]>(() => this.dataService.items());
+  highlightedText = computed<string>(() => this.dataService.highlightedText());
 
   listForm = new FormGroup({
-    find: new FormControl(''),
     input: new FormControl('', Validators.required),
   });
 
   constructor() {
-    this.dataService.getListItems().subscribe((items: ListItem[]) => {
-      this.items.set(items);
-    });
-
-    this.listForm.get('find')?.valueChanges.subscribe((change) => {
-      this.highlightedText.set(change ?? '');
-    });
+    this.dataService.getListItems();
   }
 
   onSubmit(): void {
@@ -53,21 +48,16 @@ export class ListComponent {
       return;
     }
 
-    // get value
+    // get value from input
     const value = this.listForm.get('input')?.value ?? '';
 
-    // update name to kebab -case
+    // update name to kebab-case
     const name = value.replace(/\s+/g, '-').toLowerCase();
 
     // add new listitem to items array
-    this.items.update((values: ListItem[]) => {
-      return [
-        ...values,
-        {
-          name,
-          value,
-        },
-      ];
+    this.dataService.addListItem({
+      name,
+      value,
     });
   }
 }

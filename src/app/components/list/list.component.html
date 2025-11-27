@@ -1,9 +1,6 @@
-<form [formGroup]="listForm" (ngSubmit)="onSubmit()">
-  <mat-form-field class="find-field">
-    <mat-label>Hightlight item</mat-label>
-    <input id="find" matInput type="text" formControlName="find" />
-  </mat-form-field>
+<app-search></app-search>
 
+<form [formGroup]="listForm" (ngSubmit)="onSubmit()">
   <mat-nav-list id="list" class="list">
     @for (item of items(); track item) {
     <mat-list-item [routerLink]="'/detail/' + item.name">

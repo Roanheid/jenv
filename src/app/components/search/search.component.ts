@@ -8,7 +8,6 @@ import { DataService } from '../../services/data/data.service';
   imports: [MatInputModule, ReactiveFormsModule],
   standalone: true,
   templateUrl: './search.component.html',
-  styleUrl: './search.component.scss',
 })
 export class SearchComponent {
   private readonly dataService = inject(DataService);

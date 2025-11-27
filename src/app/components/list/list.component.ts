@@ -59,5 +59,7 @@ export class ListComponent {
       name,
       value,
     });
+
+    this.listForm.reset();
   }
 }

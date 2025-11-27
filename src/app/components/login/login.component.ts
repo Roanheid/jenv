@@ -8,7 +8,6 @@ import { FakeAuthService } from '../../services/fake-auth/fake-auth.service';
   imports: [MatButtonModule],
   standalone: true,
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
 })
 export class LoginComponent {
   private authService = inject(FakeAuthService);

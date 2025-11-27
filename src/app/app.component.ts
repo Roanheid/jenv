@@ -7,7 +7,6 @@ import { FakeAuthService } from './services/fake-auth/fake-auth.service';
   imports: [RouterOutlet],
   standalone: true,
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'jenv';

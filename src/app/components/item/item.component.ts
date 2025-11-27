@@ -9,7 +9,6 @@ import { DataService } from '../../services/data/data.service';
   imports: [RouterModule, MatButtonModule],
   standalone: true,
   templateUrl: './item.component.html',
-  styleUrl: './item.component.scss',
 })
 export class ItemComponent implements OnInit {
   private route = inject(ActivatedRoute);

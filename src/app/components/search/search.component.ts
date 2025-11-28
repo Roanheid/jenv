@@ -1,4 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { DataService } from '../../services/data/data.service';
@@ -11,15 +12,19 @@ import { DataService } from '../../services/data/data.service';
 })
 export class SearchComponent implements OnInit {
   private readonly dataService = inject(DataService);
+  private readonly destroyRef = inject(DestroyRef);
 
   searchForm = new FormGroup({
     find: new FormControl(''),
   });
 
   ngOnInit() {
-    this.searchForm.get('find')?.valueChanges.subscribe((change) => {
-      // update highlighted text value
-      this.dataService.highlightedText.set(change ?? '');
-    });
+    this.searchForm
+      .get('find')
+      ?.valueChanges.pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((change) => {
+        // update highlighted text value
+        this.dataService.highlightedText.set(change ?? '');
+      });
   }
 }

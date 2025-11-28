@@ -2,7 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
-import { ListItem } from './data.interace';
+import { ListItem } from './data.interface';
 
 @Injectable({
   providedIn: 'root',

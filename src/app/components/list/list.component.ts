@@ -10,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { HighlightTextPipe } from '../../pipes/highlight-text.pipe';
-import { ListItem } from '../../services/data/data.interace';
+import { ListItem } from '../../services/data/data.interface';
 import { DataService } from '../../services/data/data.service';
 import { SearchComponent } from '../search/search.component';
 
@@ -32,11 +32,23 @@ import { SearchComponent } from '../search/search.component';
 export class ListComponent implements OnInit {
   private readonly dataService = inject(DataService);
 
-  items = computed<ListItem[]>(() => this.dataService.items());
+  items = computed<ListItem[]>(() => {
+    return this.dataService.items().filter((item: ListItem) => {
+      // if searching for an item return only items that have a match
+      if (this.highlightedText().length > 0) {
+        return item.value.includes(this.highlightedText());
+      } else {
+        return item;
+      }
+    });
+  });
   highlightedText = computed<string>(() => this.dataService.highlightedText());
 
   listForm = new FormGroup({
-    input: new FormControl('', Validators.required),
+    input: new FormControl('', {
+      validators: Validators.required,
+      nonNullable: true,
+    }),
   });
 
   ngOnInit(): void {

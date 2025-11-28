@@ -1,7 +1,7 @@
 import { signal } from '@angular/core';
 import { of } from 'rxjs';
 import * as items from '../../../mocks/list.mock.json';
-import { ListItem } from './data.interace';
+import { ListItem } from './data.interface';
 
 export class DataServiceMock {
   items = signal<ListItem[]>(items.items);

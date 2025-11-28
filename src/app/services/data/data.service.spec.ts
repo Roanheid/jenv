@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import * as items from '../../../mocks/list.mock.json';
-import { ListItem } from './data.interace';
+import { ListItem } from './data.interface';
 import { DataService } from './data.service';
 
 describe('DataService', () => {

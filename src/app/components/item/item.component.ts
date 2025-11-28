@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { ListItem } from '../../services/data/data.interace';
+import { ListItem } from '../../services/data/data.interface';
 import { DataService } from '../../services/data/data.service';
 
 @Component({

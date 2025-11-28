@@ -53,6 +53,6 @@ describe('AppComponent', () => {
 
     // THEN
     expect(authSpy).toHaveBeenCalled();
-    expect(routerSpy).toHaveBeenCalledWith(['/']);
+    expect(routerSpy).toHaveBeenCalledWith(['/login']);
   });
 });

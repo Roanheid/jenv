@@ -36,7 +36,9 @@ export class ListComponent implements OnInit {
     return this.dataService.items().filter((item: ListItem) => {
       // if searching for an item return only items that have a match
       if (this.highlightedText().length > 0) {
-        return item.value.includes(this.highlightedText());
+        return item.value
+          .toLowerCase()
+          .includes(this.highlightedText().toLowerCase());
       } else {
         return item;
       }

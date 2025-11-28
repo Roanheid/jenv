@@ -2,6 +2,33 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
 
+## Assassment
+
+Een kleine toelichting voor bepaalde keuzes.
+
+### Mock Service Worker
+
+Voor fake API calls heb ik [Mock Service Worker](https://mswjs.io/) gebruikt. Het voordeel hiervan is dat de api calls, gebruikt in data.service.ts, conform normale api request zijn.
+De api mocks zijn gedefinieerd in /mocks/handers.ts.
+
+### Playwright
+
+Er zijn geen e2e tests toegevoegd, maar er is wel rekening gehouden door data-testid's toe te voegen op interactieve elementen.
+
+### VSCode
+
+In dit scenario heb ik VSCode gerbuikt. Ik heb .vscode/settings.json toegevoegd aan de repo, met het idee dat in een team waar VSCode gerbruikt wordt we zoveel mogelijk dezelfde settings willen hebben om de code zo consistent mogelijk te houden.
+
+<br>
+
+---
+
+<br>
+<br>
+<br>
+
+# Project
+
 ## Development server
 
 To start a local development server, run:

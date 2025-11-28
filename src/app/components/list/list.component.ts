@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -29,7 +29,7 @@ import { SearchComponent } from '../search/search.component';
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
 })
-export class ListComponent {
+export class ListComponent implements OnInit {
   private readonly dataService = inject(DataService);
 
   items = computed<ListItem[]>(() => this.dataService.items());
@@ -39,7 +39,9 @@ export class ListComponent {
     input: new FormControl('', Validators.required),
   });
 
-  constructor() {
+  ngOnInit(): void {
+    // load initial list of items, this updates the dataservice items signal,
+    // which triggers the computed items signal above.
     this.dataService.getListItems();
   }
 
@@ -52,9 +54,9 @@ export class ListComponent {
     const value = this.listForm.get('input')?.value ?? '';
 
     // update name to kebab-case
-    const name = value.replace(/\s+/g, '-').toLowerCase();
+    const name = value.replaceAll(/\s+/g, '-').toLowerCase();
 
-    // add new listitem to items array
+    // add new listitem to items, which updates the computed items signal above.
     this.dataService.addListItem({
       name,
       value,

@@ -2,4 +2,11 @@
 <b>name: </b> {{ itemDetails()?.name }} <br />
 <b>value: </b> {{ itemDetails()?.value }} <br />
 <br />
-<button mat-flat-button color="primary" routerLink="/list">Go back</button>
+<button
+  mat-flat-button
+  color="primary"
+  data-testid="back-btn"
+  routerLink="/list"
+>
+  Go back
+</button>

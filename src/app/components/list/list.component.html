@@ -6,6 +6,7 @@
     <mat-list-item [routerLink]="'/detail/' + item.name">
       <a
         class="list-item-text"
+        [title]="item.value"
         [innerHTML]="item.value | highlightText : highlightedText()"
       ></a>
     </mat-list-item>
@@ -15,11 +16,24 @@
   <div class="input-container">
     <mat-form-field class="input-field">
       <mat-label>New item</mat-label>
-      <input id="input" matInput type="text" formControlName="input" />
+      <input
+        id="input"
+        data-testid="input-field"
+        matInput
+        type="text"
+        formControlName="input"
+      />
       @if (listForm.get('input')?.hasError('required')) {
       <mat-error>'New item' is <strong>required</strong></mat-error>
       }
     </mat-form-field>
-    <button id="input-btn" mat-flat-button color="primary">Add item</button>
+    <button
+      id="input-btn"
+      data-testid="input-btn"
+      mat-flat-button
+      color="primary"
+    >
+      Add item
+    </button>
   </div>
 </form>

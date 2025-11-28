@@ -10,8 +10,8 @@ import { FakeAuthService } from '../../services/fake-auth/fake-auth.service';
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  private authService = inject(FakeAuthService);
-  private router = inject(Router);
+  private readonly authService = inject(FakeAuthService);
+  private readonly router = inject(Router);
 
   handleLogin(): void {
     this.authService.login();

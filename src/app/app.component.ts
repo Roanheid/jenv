@@ -10,8 +10,8 @@ import { FakeAuthService } from './services/fake-auth/fake-auth.service';
 })
 export class AppComponent {
   title = 'jenv';
-  private authService = inject(FakeAuthService);
-  private router = inject(Router);
+  private readonly authService = inject(FakeAuthService);
+  private readonly router = inject(Router);
 
   logout(): void {
     this.authService.logout();
